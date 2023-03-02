@@ -5,6 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="index.css" />
+    <!-- GOOGLE FONT -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
     <title>Employee Directory</title>
   </head>
   <body>
@@ -12,11 +19,24 @@
       <h1 class="meet-the-team-title">Meet the Team</h1>
       <div class="search-inputs" id="search-inputs">
         <select class="team-selections" id="team-selections">
-          <option value="everyone">Everyone</option>
+          <option value="everyone">everyone</option>
+          <option value="leadership">leadership</option>
+          <option value="sales">sales</option>
+          <option value="customer service">customer service</option>
+          <option value="product">product</option>
         </select>
-        <input type="text" class="text-input" id="text-input" placeholder="seach name">
+        <input
+          type="text"
+          class="text-input"
+          id="text-input"
+          placeholder="seach name"
+        />
       </div>
     </header>
+
+    <main class="employee-cards" id="employee-cards">
+      <!-- grid items -->
+    </main>
   </body>
-  <script src="index.js"></script>
+  <script src="index.js" type="module"></script>
 </html>
