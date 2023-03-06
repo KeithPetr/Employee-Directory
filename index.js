@@ -7,6 +7,10 @@ const selectEl = document.getElementById("team-selections");
 
 employeeCardsEl.innerHTML = filterResults();
 
+// this function looks at the values from either the dropdown menu
+// or the input value and use that information to filter the employees
+// by name. It also checks if the employee has twitter and/or linkedin.
+// Then it returns a template string that is used to display the results.
 function filterResults() {
   const team = selectEl.value;
   const inputVal = inputTextEl.value.toLowerCase();

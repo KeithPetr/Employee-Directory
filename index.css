@@ -46,6 +46,10 @@ h1 {
   font-size: 1.2rem;;
 }
 
+.team-selections:hover {
+  cursor: pointer;
+}
+
 .text-input {
   width: 90%;
   max-width: 600px;
