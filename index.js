@@ -7,26 +7,33 @@ let startIndex = 0;
 let endIndex = 4;
 let loading = false;
 
-function getEmployees(startIndex, endIndex) {
-  return employees
-    .slice(startIndex, endIndex)
-    .map((employee) => {
-      return `
-        <div class="card-container">
-            <div class="main-card-content">
-                <img class="profile-image" src="images/${employee.image}"></img>
-                <p class="employee-name">${employee.name}</p>
-                <p class="employee-title">${employee.title}</p>
-                ${employee.bio}
-            </div> 
-            <a href="${employee.social[0]}"><img src="images/linkedin.svg" class="linkedIn"></a>
-        </div>
-        `;
-    })
-    .join("");
-}
+// function getEmployees(startIndex, endIndex) {
+//   return employees
+//     .slice(startIndex, endIndex)
+//     .map((employee) => {
+//       let socialLinks = '';
+//       if (employee.social.twitter) {
+//         socialLinks += `<a href="${employee.social.twitter}"><img src="images/twitter.svg" class="twitter"></a>`;
+//       }
+//       if (employee.social.linkedin) {
+//         socialLinks += `<a href="${employee.social.linkedin}"><img src="images/linkedin.svg" class="linkedIn"></a>`;
+//       }
+//       return `
+//         <div class="card-container">
+//             <div class="main-card-content">
+//                 <img class="profile-image" src="images/${employee.image}"></img>
+//                 <p class="employee-name">${employee.name}</p>
+//                 <p class="employee-title">${employee.title}</p>
+//                 ${employee.bio}
+//             </div> 
+//             ${socialLinks}
+//         </div>
+//         `;
+//     })
+//     .join("");
+// }
 
-employeeCardsEl.innerHTML = getEmployees(startIndex, endIndex);
+employeeCardsEl.innerHTML = filterResults();
 
 function loadMoreEmployees() {
   loading = true;
@@ -48,20 +55,29 @@ function filterResults() {
     });
   }
   const html = filteredEmployees
-    .map((employee) => {
-      return `
-        <div class="card-container">
-            <div class="main-card-content">
-                <img class="profile-image" src="images/${employee.image}"></img>
-                <p class="employee-name">${employee.name}</p>
-                <p class="employee-title">${employee.title}</p>
-                ${employee.bio}
-            </div> 
-            <a href="${employee.social}"><img src="images/linkedin.svg" class="linkedIn"></a>
-        </div>
-        `;
-    })
-    .join("");
+  .map((employee) => {
+    let socialLinks = '';
+    if (employee.social.twitter) {
+      socialLinks += `<a href="${employee.social.twitter}"><img src="images/twitter.svg" class="twitter"></a>`;
+    }
+    if (employee.social.linkedin) {
+      socialLinks += `<a href="${employee.social.linkedin}"><img src="images/linkedin.svg" class="linkedIn"></a>`;
+    }
+    return `
+      <div class="card-container">
+          <div class="main-card-content">
+              <img class="profile-image" src="images/${employee.image}"></img>
+              <p class="employee-name">${employee.name}</p>
+              <p class="employee-title">${employee.title}</p>
+              ${employee.bio}
+          </div>
+          <div class="social-links"> 
+            ${socialLinks}
+          </div>
+      </div>
+      `;
+  })
+  .join("");
   employeeCardsEl.innerHTML = html;
 }
 

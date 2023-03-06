@@ -107,8 +107,12 @@ p {
   font-weight: 700;
 }
 
+.social-links {
+  margin-top: .75em;
+}
+
 a {
-  margin: 1em 0 0;
+  margin: 1em 1em 0 0;
 }
 
 /* --------------------- MEDIA QUERIES ----------------- */
