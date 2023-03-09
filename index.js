@@ -4,6 +4,9 @@ const employeeCardsEl = document.getElementById("employee-cards");
 const inputTextEl = document.getElementById("text-input");
 const selectEl = document.getElementById("team-selections");
 
+// set variables to be used for paginate function
+let resultNum = 6
+let isLoading = false
 
 employeeCardsEl.innerHTML = filterResults();
 
@@ -20,7 +23,7 @@ function filterResults() {
       return employee.name.toLowerCase().includes(inputVal);
     });
   }
-  const html = filteredEmployees
+  const html = filteredEmployees.slice(0, resultNum)
   .map((employee) => {
     let socialLinks = '';
     if (employee.social.twitter) {
@@ -33,8 +36,8 @@ function filterResults() {
       <div class="card-container">
           <div class="main-card-content">
               <img class="profile-image" src="images/${employee.image}"></img>
-              <p class="employee-name">${employee.name}</p>
-              <p class="employee-title">${employee.title}</p>
+              <h2 class="employee-name">${employee.name}</h2>
+              <h3 class="employee-title">${employee.title}</h3>
               ${employee.bio}
           </div>
           <div class="social-links"> 
@@ -63,3 +66,17 @@ function filterDropdownList(team) {
 // or a change in the dropdown menu selection
 inputTextEl.addEventListener("input", filterResults);
 selectEl.addEventListener("change", filterResults);
+
+// paginate function to load more data when scrolled to bottom of page
+window.addEventListener('scroll', () => {
+    // Check if we're at the bottom of the page
+    const isAtBottom = (window.innerHeight + window.scrollY) >= document.body.offsetHeight
+    
+    if (isAtBottom && !isLoading) {
+      // Set isLoading to true so that we don't render multiple pages at once
+      isLoading = true;
+      resultNum += 6
+      employeeCardsEl.innerHTML = filterResults();
+      isLoading = false
+    }
+})
